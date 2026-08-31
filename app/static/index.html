@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Direct LinkedIn profile API explorer" />
+    <title>Profile Lens · LinkedIn API Explorer</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Profile Lens home">
+          <span class="brand-mark">in</span>
+          <span>
+            <strong>Profile Lens</strong>
+          </span>
+        </a>
+      </header>
+
+      <main class="workspace">
+        <aside class="control-panel">
+          <div class="intro">
+            <p class="eyebrow">LinkedIn profile intelligence</p>
+            <h1>Turn a profile URL into clean, useful data.</h1>
+            <p>Connect a session, paste a LinkedIn profile, and inspect the structured result.</p>
+          </div>
+
+          <section class="control-card" id="login-card">
+            <div class="section-heading">
+              <span class="step">01</span>
+              <div>
+                <h2>Connect LinkedIn</h2>
+                <p>Direct session authentication</p>
+              </div>
+            </div>
+
+            <div class="session-summary" id="session-summary" hidden>
+              <div class="success-icon" aria-hidden="true">✓</div>
+              <div>
+                <strong>Session connected</strong>
+                <span id="session-detail">LinkedIn session is active.</span>
+              </div>
+              <button class="text-button" type="button" id="change-account">Change</button>
+            </div>
+
+            <div class="deployment-note" id="deployment-note" hidden>
+              <strong>Backend session unavailable</strong>
+              <span>The deployment owner must refresh the LinkedIn session.</span>
+            </div>
+
+            <form id="login-form" class="stacked-form">
+              <label>
+                <span>LinkedIn email or phone</span>
+                <input id="linkedin-id" name="linkedin_id" type="text" autocomplete="username" placeholder="name@example.com" required />
+              </label>
+              <label>
+                <span>Password</span>
+                <div class="password-field">
+                  <input id="linkedin-password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required />
+                  <button type="button" id="toggle-password" aria-label="Show password">Show</button>
+                </div>
+              </label>
+              <button class="primary-button" type="submit" id="login-button">
+                <span>Connect session</span>
+                <span class="button-arrow">→</span>
+              </button>
+              <p class="privacy-note">
+                <span class="lock-icon">◆</span>
+                Used once by your local backend. The password is never saved.
+              </p>
+            </form>
+          </section>
+
+          <section class="control-card lookup-card">
+            <div class="section-heading">
+              <span class="step">02</span>
+              <div>
+                <h2>Fetch a profile</h2>
+                <p>Public LinkedIn profile URL</p>
+              </div>
+            </div>
+            <form id="profile-form" class="stacked-form">
+              <label>
+                <span>Profile URL</span>
+                <input id="profile-url" name="linkedin_url" type="url" placeholder="https://linkedin.com/in/username/" required />
+              </label>
+              <button class="primary-button accent" type="submit" id="fetch-button">
+                <span>Extract profile</span>
+                <span class="button-arrow">↗</span>
+              </button>
+            </form>
+          </section>
+        </aside>
+
+        <section class="result-panel" aria-live="polite">
+          <div class="result-toolbar">
+            <div>
+              <p class="eyebrow">Structured response</p>
+              <h2>Profile preview</h2>
+            </div>
+            <button class="secondary-button" id="copy-json" type="button" hidden>Copy JSON</button>
+          </div>
+
+          <div class="empty-state" id="empty-state">
+            <div class="data-orbit" aria-hidden="true">
+              <span class="orbit orbit-one"></span>
+              <span class="orbit orbit-two"></span>
+              <div class="orbit-core">{ }</div>
+            </div>
+            <h3>Your profile data will appear here</h3>
+            <p>Connect your session and submit a LinkedIn URL to see identity, experience, education, skills, and more.</p>
+            <div class="field-preview">
+              <span>Identity</span><span>Experience</span><span>Education</span><span>Skills</span>
+            </div>
+            <button class="preview-button" id="preview-sample" type="button">Preview sample profile</button>
+          </div>
+
+          <div class="loading-state" id="loading-state" hidden>
+            <div class="skeleton hero-skeleton"></div>
+            <div class="skeleton line wide"></div>
+            <div class="skeleton line medium"></div>
+            <div class="skeleton card-skeleton"></div>
+            <div class="skeleton card-skeleton short"></div>
+          </div>
+
+          <div class="profile-result" id="profile-result" hidden></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>

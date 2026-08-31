@@ -1,0 +1,77 @@
+{
+  "data": {
+    "$type": "com.linkedin.restli.common.CollectionResponse",
+    "*elements": ["urn:li:fsd_profile:TARGET"]
+  },
+  "included": [
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Profile",
+      "entityUrn": "urn:li:fsd_profile:TARGET",
+      "publicIdentifier": "target-person",
+      "firstName": {"text": "Target", "attributes": []},
+      "lastName": {"text": "Person", "attributes": []},
+      "headline": {"text": "Platform Engineer", "attributes": []},
+      "summary": {"text": "About target", "attributes": []},
+      "geoLocation": {"geoUrn": "urn:li:fsd_geo:1"},
+      "*profilePositionGroups": "urn:li:fsd_collectionResponse:position-groups",
+      "*profileEducations": "urn:li:fsd_collectionResponse:educations"
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Profile",
+      "entityUrn": "urn:li:fsd_profile:STALE",
+      "publicIdentifier": "stale-person",
+      "firstName": "Stale",
+      "lastName": "Person"
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.common.Geo",
+      "entityUrn": "urn:li:fsd_geo:1",
+      "defaultLocalizedName": "Pune, India"
+    },
+    {
+      "$type": "com.linkedin.restli.common.CollectionResponse",
+      "entityUrn": "urn:li:fsd_collectionResponse:position-groups",
+      "*elements": ["urn:li:fsd_profilePositionGroup:1"]
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.PositionGroup",
+      "entityUrn": "urn:li:fsd_profilePositionGroup:1",
+      "*profilePositionInPositionGroup": "urn:li:fsd_collectionResponse:positions"
+    },
+    {
+      "$type": "com.linkedin.restli.common.CollectionResponse",
+      "entityUrn": "urn:li:fsd_collectionResponse:positions",
+      "*elements": ["urn:li:fsd_profilePosition:TARGET-POSITION"]
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Position",
+      "entityUrn": "urn:li:fsd_profilePosition:TARGET-POSITION",
+      "title": {"text": "Senior Engineer", "attributes": []},
+      "*company": "urn:li:fsd_company:1",
+      "dateRange": {"start": {"month": 1, "year": 2024}}
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Position",
+      "entityUrn": "urn:li:fsd_profilePosition:STALE-POSITION",
+      "title": "Unrelated stale position",
+      "companyName": "Wrong Company"
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.organization.Company",
+      "entityUrn": "urn:li:fsd_company:1",
+      "name": "Target Company"
+    },
+    {
+      "$type": "com.linkedin.restli.common.CollectionResponse",
+      "entityUrn": "urn:li:fsd_collectionResponse:educations",
+      "*elements": ["urn:li:fsd_profileEducation:1"]
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Education",
+      "entityUrn": "urn:li:fsd_profileEducation:1",
+      "schoolName": {"text": "Target University", "attributes": []},
+      "degreeName": {"text": "B.Tech", "attributes": []},
+      "dateRange": {"start": {"year": 2018}, "end": {"year": 2022}}
+    }
+  ]
+}
